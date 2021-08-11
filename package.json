@@ -1,7 +1,7 @@
 {
-  "name": "vitesse-modernized-chrome-ext",
-  "displayName": "[name]",
-  "description": "[description]",
+  "name": "web-bookmark",
+  "displayName": "Web Bookmark",
+  "description": "Turn a link as a visual bookmark.",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -17,6 +17,7 @@
     "clear": "rimraf extension/dist extension/background.js"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "vue-i18n": "^9.1.7"
   },
   "devDependencies": {
@@ -38,6 +39,7 @@
     "kolorist": "^1.5.0",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
+    "sass": "^1.37.5",
     "tsup": "^4.12.5",
     "typescript": "^4.3.5",
     "vite": "^2.4.3",

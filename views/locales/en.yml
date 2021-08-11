@@ -3,6 +3,7 @@ common:
 button:
   toggle_dark: Toggle dark mode
   toggle_langs: Change languages
+  toggle_layout: Toggle Bookmark Layout
 popup:
   desc: This is the popup page
   open_options: Open Options

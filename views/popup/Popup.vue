@@ -1,26 +1,44 @@
 <template>
-  <main class="w-[300px] px-4 py-5 text-center text-gray-700 dark:text-gray-200">
-    <carbon-popup class="icon-btn mx-2 text-2xl" />
-    <div>Popup</div>
-    <p class="mt-2 opacity-50">
-      {{ $t('popup.desc') }}
-    </p>
-    <button class="btn mt-2" @click="openOptionsPage">
-      {{ $t('popup.open_options') }}
-    </button>
+  <main
+    class="p-4"
+    :class="{'column': isHorizontal}"
+    text="gray-700 dark:gray-200"
+    bg="gray-50 dark:gray-900"
+  >
+    <Bookmark
+      v-if="currentUrl"
+      :url="currentUrl"
+      :horizontal="isHorizontal"
+    />
 
-    <Footer />
-
-    <div class="mt-2">
-      <span class="opacity-50">{{ $t('popup.storage') }}:</span> {{ storageDemo }}
-    </div>
+    <Footer class="text-center">
+      <a class="icon-btn text-xl mx-2 inline-block" :title="$t('button.toggle_layout')" @click="toggleColumn">
+        <mdi-dock-right v-if="isHorizontal" />
+        <mdi-dock-top v-else />
+      </a>
+    </Footer>
   </main>
 </template>
 
 <script setup lang="ts">
-import { storageDemo } from '~/logic/storage'
+import { ref } from 'vue'
+// import { storageDemo } from '~/logic/storage'
 
-function openOptionsPage() {
-  chrome.runtime.openOptionsPage()
+const currentUrl = ref('')
+const isHorizontal = ref(false)
+const toggleColumn = () => {
+  isHorizontal.value = !isHorizontal.value
 }
+
+chrome.tabs.query({
+  active: true,
+  currentWindow: true,
+}, (tabs) => {
+  const currentTab = tabs[0]
+  currentUrl.value = currentTab.url as string
+})
 </script>
+
+<style lang="scss">
+
+</style>

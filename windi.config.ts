@@ -9,4 +9,7 @@ export default defineConfig({
       '**/*.{vue,html}',
     ],
   },
+  plugins: [
+    require('windicss/plugin/line-clamp'),
+  ],
 })

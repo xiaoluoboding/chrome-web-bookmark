@@ -11,7 +11,7 @@ export async function getManifest(): Promise<Manifest.WebExtensionManifest> {
     version: pkg.version,
     description: pkg.description,
     action: {
-      default_icon: './assets/icon-512.png',
+      default_icon: './assets/favicon.png',
       default_popup: './dist/popup/index.html',
     },
     options_ui: {
@@ -28,9 +28,9 @@ export async function getManifest(): Promise<Manifest.WebExtensionManifest> {
       },
     ],
     icons: {
-      16: './assets/icon-512.png',
-      48: './assets/icon-512.png',
-      128: './assets/icon-512.png',
+      16: './assets/favicon.png',
+      48: './assets/favicon.png',
+      128: './assets/favicon.png',
     },
     permissions: [
       'tabs',

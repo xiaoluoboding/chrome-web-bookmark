@@ -1,25 +1,17 @@
 <template>
   <main class="px-4 py-10 text-center text-gray-700 dark:text-gray-200">
-    <carbon-settings class="icon-btn mx-2 text-2xl" />
-    <div>Options</div>
-    <p class="my-2 opacity-50">
-      {{ $t('options.desc') }}
-    </p>
+    <section class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
+      <div class="w-full flex justify-center flex-col items-center">
+        <Bookmark v-if="currentUrl" :url="currentUrl" />
+        <Bookmark v-if="currentUrl" :url="currentUrl" cover="left" />
+        <Bookmark v-if="currentUrl" :url="currentUrl" size="small" />
+      </div>
 
-    <input
-      id="input"
-      v-model="storageDemo"
-      :placeholder="$t('options.sync_storage')"
-      :aria-label="$t('options.sync_storage')"
-      type="text"
-      autocomplete="false"
-      p="x-4 y-2"
-      w="250px"
-      text="center"
-      bg="transparent"
-      border="~ rounded gray-200 dark:gray-700"
-      outline="none active:none"
-    >
+      <div class="w-full flex justify-center flex-col items-center">
+        <Bookmark v-if="currentUrl" :url="currentUrl" horizontal />
+        <!-- <Bookmark v-if="currentUrl" :url="currentUrl" horizontal size="small" /> -->
+      </div>
+    </section>
 
     <Footer />
 
@@ -30,5 +22,13 @@
 </template>
 
 <script setup lang="ts">
-import { storageDemo } from '~/logic/storage'
+const currentUrl = ref('https://ghost.org/changelog/bookmark-cards/')
+
+// chrome.tabs.query({
+//   active: true,
+//   currentWindow: true,
+// }, (tabs) => {
+//   const currentTab = tabs[0]
+//   currentUrl.value = currentTab.url as string
+// })
 </script>
