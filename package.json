@@ -1,7 +1,7 @@
 {
   "name": "web-bookmark",
-  "displayName": "Web Bookmark",
-  "description": "Turn a link as a visual bookmark.",
+  "displayName": "Web Visual Bookmark",
+  "description": "Turn a link as a visualization bookmark, just like `Twitter` cards or `Notion` web bookmark.",
   "version": "0.0.1",
   "private": true,
   "scripts": {

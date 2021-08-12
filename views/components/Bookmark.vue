@@ -53,7 +53,7 @@
         ></circle>
         <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
       </svg>
-      <span class="mt-4 text-gray-800 dark:text-gray-400">Loading Bookmark Meta Data...</span>
+      <span class="mt-4 text-gray-800 dark:text-gray-400">Loading Visualization Bookmark...</span>
     </div>
   </figure>
 </template>

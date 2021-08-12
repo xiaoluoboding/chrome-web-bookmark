@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-// import { storageDemo } from '~/logic/storage'
+import { sharedLink } from '~/logic/storage'
 
 const currentUrl = ref('')
 const isHorizontal = ref(false)
@@ -36,9 +36,6 @@ chrome.tabs.query({
 }, (tabs) => {
   const currentTab = tabs[0]
   currentUrl.value = currentTab.url as string
+  sharedLink.value = currentUrl.value
 })
 </script>
-
-<style lang="scss">
-
-</style>

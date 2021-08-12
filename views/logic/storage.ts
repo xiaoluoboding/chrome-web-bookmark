@@ -1,3 +1,3 @@
 import { useLocalStorage } from '@vueuse/core'
 
-export const storageDemo = useLocalStorage('webext-demo', 'Storage Demo', { listenToStorageChanges: true })
+export const sharedLink = useLocalStorage('web-bookmark', 'Shared Link', { listenToStorageChanges: true })
