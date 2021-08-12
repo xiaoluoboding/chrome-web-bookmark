@@ -1,32 +1,32 @@
 <template>
   <figure
-    class="vp-bookmark-card"
+    class="web-bookmark-card"
     :class="bookmarkClass"
   >
     <a
       v-if="!isLoading"
-      class="vp-bookmark-wrapper"
+      class="web-bookmark-wrapper"
       :href="metaData.url"
       :style="dynamicStyle"
       target="_blank"
     >
-      <div class="vp-bookmark-content">
-        <div class="vp-bookmark-content--box vp-bookmark-content__title">
+      <div class="web-bookmark-content">
+        <div class="web-bookmark-content--box web-bookmark-content__title">
           <span>{{ metaData.title }}</span>
         </div>
-        <div class="vp-bookmark-content--box vp-bookmark-content__desc">
+        <div class="web-bookmark-content--box web-bookmark-content__desc">
           {{ metaData.description }}
         </div>
-        <div class="vp-bookmark-content--box vp-bookmark-content__meta">
-          <div class="vp-bookmark-meta">
-            <img v-if="metaData.logo" :src="metaData.logo" class="vp-bookmark-meta__icon">
-            <span class="vp-bookmark-meta__author">
+        <div class="web-bookmark-content--box web-bookmark-content__meta">
+          <div class="web-bookmark-meta">
+            <img v-if="metaData.logo" :src="metaData.logo" class="web-bookmark-meta__icon">
+            <span class="web-bookmark-meta__author">
               {{ metaData.author || metaData.publisher || metaData.url }}
             </span>
           </div>
         </div>
       </div>
-      <div v-if="metaData.image" class="vp-bookmark-thumbnail">
+      <div v-if="metaData.image" class="web-bookmark-thumbnail">
         <img :src="metaData.image">
       </div>
     </a>
@@ -127,10 +127,10 @@ export default defineComponent({
 
     const bookmarkClass = computed(() => {
       return {
-        'vp-bookmark-card--large': props.size === 'large',
-        'vp-bookmark-card--medium': props.size === 'medium',
-        'vp-bookmark-card--small': props.size === 'small',
-        'vp-bookmark-card--horizontal': props.horizontal,
+        'web-bookmark-card--large': props.size === 'large',
+        'web-bookmark-card--medium': props.size === 'medium',
+        'web-bookmark-card--small': props.size === 'small',
+        'web-bookmark-card--horizontal': props.horizontal,
         'is-always-shadow': props.shadow === 'always',
         'is-hover-shadow': props.shadow === 'hover',
         'is-never-shadow': props.shadow === 'never',
@@ -167,21 +167,21 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.vp-bookmark-card {
+.web-bookmark-card {
   @apply relative rounded-md overflow-hidden;
   @apply border border-gray-200 dark:border-gray-700;
   @apply shadow-xl shadow-gray-500 dark:shadow-gray-700;
   @apply text-left;
   @apply w-[480px] mb-8;
   transition: .3s;
-  .vp-bookmark-wrapper {
+  .web-bookmark-wrapper {
     font-family: inherit;
     box-shadow: none;
     @apply flex flex-wrap flex-row-reverse;
     @apply text-current;
     @apply no-underline hover:no-underline;
     @apply bg-light-50 dark:bg-gray-800;
-    .vp-bookmark-content {
+    .web-bookmark-content {
       flex-grow: 999;
       flex-basis: 0;
       @apply grid order-1;
@@ -206,7 +206,7 @@ export default defineComponent({
       &__meta {
         @apply items-center truncate;
       }
-      .vp-bookmark-meta {
+      .web-bookmark-meta {
         @apply flex items-center truncate;
         &__icon {
           @apply inline-block align-text-bottom mr-2;
@@ -217,7 +217,7 @@ export default defineComponent({
       }
     }
 
-    .vp-bookmark-thumbnail {
+    .web-bookmark-thumbnail {
       flex-basis: 16rem;
       flex-grow: 1;
       @apply relative;
@@ -228,8 +228,9 @@ export default defineComponent({
     }
   }
 
-  &.vp-bookmark-card--medium {
-    .vp-bookmark-content {
+  // medium size style
+  &.web-bookmark-card--medium {
+    .web-bookmark-content {
       &__title {
         @apply text-base;
       }
@@ -237,7 +238,7 @@ export default defineComponent({
         @apply text-sm;
       }
     }
-    .vp-bookmark-meta {
+    .web-bookmark-meta {
       &__icon {
         @apply w-4 h-4;
       }
@@ -247,36 +248,36 @@ export default defineComponent({
     }
   }
 
-  // size small style
-  &.vp-bookmark-card--small {
-    .vp-bookmark-content {
-      @apply py-3 px-4;
-      &__title {
-        @apply text-sm;
-      }
-      &__desc {
-        @apply text-xs;
-      }
-    }
-    .vp-bookmark-meta {
-      &__icon {
-        @apply w-3.5 h-3.5;
-      }
-      &__author {
-        @apply text-xs;
-      }
-    }
-    .vp-bookmark-thumbnail {
-      flex-basis: 13.5rem;
-      @apply h-30;
-    }
-  }
-
-  &.vp-bookmark-card--horizontal {
+  &.web-bookmark-card--horizontal {
     @apply w-[720px];
-    .vp-bookmark-wrapper {
-      .vp-bookmark-thumbnail {
+    .web-bookmark-wrapper {
+      .web-bookmark-thumbnail {
         @apply h-36;
+      }
+    }
+
+    // small size style
+    &.web-bookmark-card--small {
+      .web-bookmark-content {
+        @apply py-3 px-4;
+        &__title {
+          @apply text-sm;
+        }
+        &__desc {
+          @apply text-xs;
+        }
+      }
+      .web-bookmark-meta {
+        &__icon {
+          @apply w-3.5 h-3.5;
+        }
+        &__author {
+          @apply text-xs;
+        }
+      }
+      .web-bookmark-thumbnail {
+        flex-basis: 13.5rem;
+        @apply h-30;
       }
     }
   }
