@@ -14,6 +14,7 @@ specifiers:
   axios: ^0.21.1
   chokidar: ^3.5.2
   cross-env: ^7.0.3
+  dayjs: ^1.10.6
   eslint: ^7.31.0
   esno: ^0.8.0
   fs-extra: ^10.0.0
@@ -36,6 +37,7 @@ specifiers:
 
 dependencies:
   axios: 0.21.1
+  dayjs: 1.10.6
   vue-i18n: 9.1.7_vue@3.1.5
 
 devDependencies:
@@ -1168,6 +1170,10 @@ packages:
   /csstype/2.6.17:
     resolution: {integrity: sha512-u1wmTI1jJGzCJzWndZo8mk4wnPTZd1eOIYTYvuEyOQGfmDl3TrabCCfKnOC86FZwW/9djqTl933UF/cS425i9A==}
     dev: true
+
+  /dayjs/1.10.6:
+    resolution: {integrity: sha512-AztC/IOW4L1Q41A86phW5Thhcrco3xuAA+YX/BLpLWWjRcTj5TOt/QImBLmCKlrF7u7k47arTnOyL6GnbG8Hvw==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -3408,6 +3414,21 @@ packages:
       vue: 3.1.5
     dev: true
 
+  /vue-demi/0.11.3_vue@3.1.5:
+    resolution: {integrity: sha512-DpM0TTMpclRZDV6AIacgg837zrim/C9Zn+2ztXBs9hsESJN9vC83ztjTe4KC4HgJuVle8YUjPp7HTwWtwOHfmg==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.1.5
+    dev: true
+
   /vue-eslint-parser/7.9.0_eslint@7.31.0:
     resolution: {integrity: sha512-QBlhZ5LteDRVy2dISfQhNEmmcqph+GTaD4SH41bYzXcVHFPJ9p34zCG6QAqOZVa8PKaVgbomFnoZpGJRZi14vg==}
     engines: {node: '>=8.10'}
@@ -3429,7 +3450,7 @@ packages:
   /vue-global-api/0.2.4_vue@3.1.5:
     resolution: {integrity: sha512-Cm84AZiALt8f4CJZzPvbForTzAUYe41msnzUnRK6B7YkaDaN8g87ap8CpHWvTU0+XtyDeLLAeQoRr+uwamxfpQ==}
     dependencies:
-      vue-demi: 0.11.2_vue@3.1.5
+      vue-demi: 0.11.3_vue@3.1.5
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue

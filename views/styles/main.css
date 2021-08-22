@@ -1,25 +1,47 @@
 html,
-body,
-#app {
+body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-html.dark {
-  @apply bg-gray-900;
+#app {
+  min-height: 100vh;
+  /* @apply bg-true-gray-50 dark:bg-gray-900; */
+  @apply bg-gradient-to-br from-light-900 to-light-50;
+  @apply dark:from-gray-900 dark:to-gray-600;
 }
 
 .btn {
   @apply px-4 py-1 rounded inline-block
-    bg-teal-600 text-white cursor-pointer
-    hover:bg-teal-700
+    bg-light-blue-600 text-white cursor-pointer
+    hover:bg-light-blue-700
     disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50;
 }
 
 .icon-btn {
   @apply inline-block cursor-pointer select-none
     opacity-75 transition duration-200 ease-in-out
-    hover:opacity-100 hover:text-teal-600;
+    hover:opacity-100 hover:text-light-blue-600;
   font-size: 0.9em;
+}
+
+.gradient-text {
+  @apply bg-clip-text;
+  background-image: linear-gradient(90deg, #ff3278 0px, #0ab9e6 100%);
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.66);
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+.dark .glass-card {
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.66);
+  border: 1px solid rgba(255, 255, 255, 0.125);
 }

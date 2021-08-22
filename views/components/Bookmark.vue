@@ -5,7 +5,7 @@
   >
     <a
       v-if="!isLoading"
-      class="web-bookmark-wrapper"
+      class="web-bookmark-wrapper glass-card"
       :href="metaData.url"
       :style="dynamicStyle"
       target="_blank"
@@ -32,7 +32,7 @@
     </a>
     <div
       v-else
-      class="text-center p-20 flex flex-col justify-center items-center"
+      class="text-center p-20 flex flex-col justify-center items-center glass-card"
     >
       <svg
         class="anim-rotate box-content text-gray-700"
@@ -169,18 +169,19 @@ export default defineComponent({
 <style lang="scss" scoped>
 .web-bookmark-card {
   @apply relative rounded-md overflow-hidden;
-  @apply border border-gray-200 dark:border-gray-700;
+  // @apply border border-gray-200 dark:border-gray-700;
   @apply shadow-xl shadow-gray-500 dark:shadow-gray-700;
   @apply text-left;
   @apply w-[480px] mb-8;
-  transition: .3s;
+  transition: all .3s ease-out;
   .web-bookmark-wrapper {
     font-family: inherit;
     box-shadow: none;
     @apply flex flex-wrap flex-row-reverse;
     @apply text-current;
     @apply no-underline hover:no-underline;
-    @apply bg-light-50 dark:bg-gray-800;
+    @apply dark:from-gray-800 dark:to-gray-900;
+    transition: all .3s ease-out;
     .web-bookmark-content {
       flex-grow: 999;
       flex-basis: 0;

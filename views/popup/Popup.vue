@@ -3,7 +3,6 @@
     class="p-4"
     :class="{'column': isHorizontal}"
     text="gray-700 dark:gray-200"
-    bg="gray-50 dark:gray-900"
   >
     <Bookmark
       v-if="currentUrl"
