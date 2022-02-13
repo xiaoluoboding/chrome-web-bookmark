@@ -10,7 +10,7 @@
       :style="dynamicStyle"
       target="_blank"
     >
-      <div class="web-bookmark-content">
+      <div class="web-bookmark-content" :class="{ 'has-qrcode': qrcode }">
         <div class="web-bookmark-content--typogragh">
           <div class="web-bookmark-content--box web-bookmark-content__title">
             <span>{{ metaData.title }}</span>
@@ -28,7 +28,7 @@
           </div>
         </div>
 
-        <div v-if="metaData.url" class="web-bookmark-content--qrcode">
+        <div v-if="qrcode && metaData.url" class="web-bookmark-content--qrcode">
           <FancyQRCode :url="metaData.url" class="web-bookmark-qrcode" />
         </div>
       </div>
@@ -102,6 +102,10 @@ const props = defineProps({
    * whether bookmark card is horizontal or vertical
    */
   horizontal: { type: Boolean, default: false },
+  /**
+   * whether bookmark card is show qrcode
+   */
+  qrcode: { type: Boolean, default: true },
 })
 
 // const palette = ref('#3eaf7c')
@@ -183,7 +187,6 @@ watch(
     .web-bookmark-content {
       flex-grow: 999;
       flex-basis: 0;
-      grid-template-columns: 2fr 1fr;
       @apply relative grid order-1;
       @apply min-w-1/2;
       @apply py-4 px-5;
@@ -215,6 +218,10 @@ watch(
           @apply truncate;
         }
       }
+    }
+
+    .web-bookmark-content.has-qrcode {
+      grid-template-columns: 2fr 1fr;
     }
 
     .web-bookmark-thumbnail {

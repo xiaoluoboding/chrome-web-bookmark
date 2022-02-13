@@ -4,10 +4,14 @@ button:
   toggle_dark: Toggle dark mode
   toggle_langs: Change languages
   toggle_layout: Toggle Bookmark Layout
+  show_qrcode: Toggle show QRCode in web bookmark!
+  copy_image: Copy Image to Clipboard!
 popup:
   desc: This is the popup page
   open_options: Open Options
   storage: Storage
+
+  notify_image_copied: Image copied to clipboard!
 options:
   desc: This is the options page
   sync_storage: Sync Storage Message

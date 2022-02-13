@@ -4,10 +4,13 @@ button:
   toggle_dark: 切换深色模式
   toggle_langs: 切换语言
   toggle_layout: 切换书签布局
+  show_qrcode: 切换显示二维码
+  copy_image: 拷贝图片到剪切板！
 popup:
   desc: 弹窗页面
   open_options: 打开选项页面
   storage: 存储信息
+  notify_image_copied: 图片已拷贝到剪切板！
 options:
   desc: 选项页面
   sync_storage: 同步 Storage 信息
