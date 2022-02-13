@@ -54,7 +54,7 @@ import type { NotifyItem } from '~/components/types'
 const { t } = useI18n()
 const currentUrl = ref('')
 const isHorizontal = ref(false)
-const showQRCode = ref(false)
+const showQRCode = ref(true)
 const bookmarkRef = ref()
 const notifyList = ref<NotifyItem[]>([])
 
