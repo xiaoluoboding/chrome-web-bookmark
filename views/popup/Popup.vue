@@ -6,6 +6,8 @@
   >
     <Bookmark
       v-if="currentUrl"
+      id="bookmark"
+      ref="bookmarkRef"
       :url="currentUrl"
       :horizontal="isHorizontal"
     />
@@ -15,18 +17,41 @@
         <mdi-dock-right v-if="isHorizontal" />
         <mdi-dock-top v-else />
       </a>
+      <a class="icon-btn text-xl mx-2 inline-block" title="Copy Image to Clipboard!" @click="handleCopyImage">
+        <mdi:image-area />
+      </a>
     </Footer>
   </main>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
+/* eslint-disable no-console */
 import { ref } from 'vue'
+import domtoimage from 'dom-to-image'
+import {
+  copyBlobToClipboard,
+} from 'copy-image-clipboard'
+
 import { sharedLink } from '~/logic/storage'
 
 const currentUrl = ref('')
 const isHorizontal = ref(false)
+const bookmarkRef = ref()
 const toggleColumn = () => {
   isHorizontal.value = !isHorizontal.value
+}
+
+const handleCopyImage = async() => {
+  const bookmarkEl = document.getElementById('bookmark') as HTMLImageElement
+
+  try {
+    const blob = await domtoimage.toBlob(bookmarkEl)
+
+    return copyBlobToClipboard(blob)
+  }
+  catch (error) {
+    console.log(error)
+  }
 }
 
 chrome.tabs.query({
@@ -38,3 +63,9 @@ chrome.tabs.query({
   sharedLink.value = currentUrl.value
 })
 </script>
+
+<style scoped>
+#app {
+  height: 100%;
+}
+</style>

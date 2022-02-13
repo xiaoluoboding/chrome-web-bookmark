@@ -18,7 +18,10 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "copy-image-clipboard": "^2.0.1",
     "dayjs": "^1.10.6",
+    "dom-to-image": "^2.6.0",
+    "fancy-qrcode": "^0.1.0",
     "vue-i18n": "^9.1.7"
   },
   "devDependencies": {
@@ -26,6 +29,7 @@
     "@iconify/json": "^1.1.379",
     "@intlify/vite-plugin-vue-i18n": "^2.4.0",
     "@types/chrome": "^0.0.154",
+    "@types/dom-to-image": "^2.6.4",
     "@types/fs-extra": "^9.0.12",
     "@types/node": "^16.4.1",
     "@typescript-eslint/eslint-plugin": "^4.28.4",

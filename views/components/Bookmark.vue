@@ -11,19 +11,25 @@
       target="_blank"
     >
       <div class="web-bookmark-content">
-        <div class="web-bookmark-content--box web-bookmark-content__title">
-          <span>{{ metaData.title }}</span>
-        </div>
-        <div class="web-bookmark-content--box web-bookmark-content__desc">
-          {{ metaData.description }}
-        </div>
-        <div class="web-bookmark-content--box web-bookmark-content__meta">
-          <div class="web-bookmark-meta">
-            <img v-if="metaData.logo" :src="metaData.logo" class="web-bookmark-meta__icon">
-            <span class="web-bookmark-meta__author">
-              {{ metaData.author || metaData.publisher || metaData.url }}
-            </span>
+        <div class="web-bookmark-content--typogragh">
+          <div class="web-bookmark-content--box web-bookmark-content__title">
+            <span>{{ metaData.title }}</span>
           </div>
+          <div class="web-bookmark-content--box web-bookmark-content__desc">
+            {{ metaData.description }}
+          </div>
+          <div class="web-bookmark-content--box web-bookmark-content__meta">
+            <div class="web-bookmark-meta">
+              <img v-if="metaData.logo" :src="metaData.logo" class="web-bookmark-meta__icon">
+              <span class="web-bookmark-meta__author">
+                {{ metaData.author || metaData.publisher || metaData.url }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div v-if="metaData.url" class="web-bookmark-content--qrcode">
+          <FancyQRCode :url="metaData.url" class="web-bookmark-qrcode" />
         </div>
       </div>
       <div v-if="metaData.image" class="web-bookmark-thumbnail">
@@ -58,9 +64,10 @@
   </figure>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, reactive } from 'vue'
+<script lang="ts" setup>
+import { ref, reactive } from 'vue'
 import axios from 'axios'
+import FancyQRCode from './FancyQRCode.vue'
 
 const API_PREFIX = 'https://metafy.vercel.app/api?url='
 
@@ -74,96 +81,87 @@ type MetaData = {
   publisher: string
 }
 
-export default defineComponent({
-  name: 'Bookmark',
-  props: {
-    /**
-     * find the special alias and render it
-     */
-    url: { type: String, require: true },
-    /**
-     * control the bookmark size
-     */
-    size: { type: String, default: 'medium' },
-    /**
-     * the image render position of bookmark
-     */
-    cover: { type: String, default: 'right' },
-    /**
-     * when to show card shadows
-     */
-    shadow: { type: String, default: 'always' },
-    /**
-     * whether bookmark card is horizontal or vertical
-     */
-    horizontal: { type: Boolean, default: false },
-  },
-  setup(props) {
-    const palette = ref('#3eaf7c')
-    const isLoading = ref(false)
-    const metaData = reactive<MetaData>({
-      title: '',
-      description: '',
-      url: '',
-      image: '',
-      logo: '',
-      author: '',
-      publisher: '',
-    })
-
-    const init = async() => {
-      // const fakeUrl = 'https://github.com/xiaoluoboding/vitesse-modernized-chrome-ext'
-      isLoading.value = true
-      const res = await axios.get(`${API_PREFIX}${props.url}`)
-      metaData.title = res.data.title
-      metaData.description = res.data.description
-      metaData.url = props.url as string
-      metaData.image = res.data.image
-      metaData.logo = res.data.logo
-      metaData.author = res.data.author
-      metaData.publisher = res.data.publisher
-      isLoading.value = false
-    }
-
-    const bookmarkClass = computed(() => {
-      return {
-        'web-bookmark-card--large': props.size === 'large',
-        'web-bookmark-card--medium': props.size === 'medium',
-        'web-bookmark-card--small': props.size === 'small',
-        'web-bookmark-card--horizontal': props.horizontal,
-        'is-always-shadow': props.shadow === 'always',
-        'is-hover-shadow': props.shadow === 'hover',
-        'is-never-shadow': props.shadow === 'never',
-      }
-    })
-
-    const dynamicStyle = computed(() => {
-      return {
-        flexDirection: props.cover === 'right'
-          ? 'row-reverse'
-          : 'row',
-      }
-    })
-
-    onMounted(init)
-
-    watch(
-      () => props.url,
-      (newVal) => {
-        init()
-      },
-      { deep: true },
-    )
-
-    return {
-      palette,
-      isLoading,
-      metaData,
-      bookmarkClass,
-      dynamicStyle,
-    }
-  },
+const props = defineProps({
+  /**
+   * find the special alias and render it
+   */
+  url: { type: String, require: true, default: '' },
+  /**
+   * control the bookmark size
+   */
+  size: { type: String, default: 'medium' },
+  /**
+   * the image render position of bookmark
+   */
+  cover: { type: String, default: 'right' },
+  /**
+   * when to show card shadows
+   */
+  shadow: { type: String, default: 'always' },
+  /**
+   * whether bookmark card is horizontal or vertical
+   */
+  horizontal: { type: Boolean, default: false },
 })
+
+// const palette = ref('#3eaf7c')
+const isLoading = ref(false)
+
+const metaData = reactive<MetaData>({
+  title: '',
+  description: '',
+  url: '',
+  image: '',
+  logo: '',
+  author: '',
+  publisher: '',
+})
+
+const init = async() => {
+  // const fakeUrl = 'https://github.com/xiaoluoboding/vitesse-modernized-chrome-ext'
+  isLoading.value = true
+  const res = await axios.get(`${API_PREFIX}${props.url}`)
+  metaData.title = res.data.title
+  metaData.description = res.data.description
+  metaData.url = props.url as string
+  metaData.image = res.data.image
+  metaData.logo = res.data.logo
+  metaData.author = res.data.author
+  metaData.publisher = res.data.publisher
+  isLoading.value = false
+}
+
+const bookmarkClass = computed(() => {
+  return {
+    'web-bookmark-card--large': props.size === 'large',
+    'web-bookmark-card--medium': props.size === 'medium',
+    'web-bookmark-card--small': props.size === 'small',
+    'web-bookmark-card--horizontal': props.horizontal,
+    'is-always-shadow': props.shadow === 'always',
+    'is-hover-shadow': props.shadow === 'hover',
+    'is-never-shadow': props.shadow === 'never',
+  }
+})
+
+const dynamicStyle = computed(() => {
+  return {
+    'flex-direction': props.cover === 'right'
+      ? 'row-reverse'
+      : 'row',
+  }
+})
+
+onMounted(async() => {
+  await init()
+})
+
+watch(
+  () => props.url,
+  async(newVal) => {
+    await init()
+  },
+  { deep: true },
+)
 </script>
 
 <style lang="scss" scoped>
@@ -185,7 +183,8 @@ export default defineComponent({
     .web-bookmark-content {
       flex-grow: 999;
       flex-basis: 0;
-      @apply grid order-1;
+      grid-template-columns: 2fr 1fr;
+      @apply relative grid order-1;
       @apply min-w-1/2;
       @apply py-4 px-5;
       &--box {
@@ -225,7 +224,12 @@ export default defineComponent({
       @apply min-w-1/3 max-h-full h-64;
       img {
         @apply m-0 w-full h-full align-bottom object-cover;
+        @apply relative;
       }
+    }
+
+    .web-bookmark-qrcode {
+      @apply absolute right-0 bottom-0 h-full w-1/3;
     }
   }
 
