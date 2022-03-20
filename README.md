@@ -6,12 +6,21 @@
 
 | Bookmark Layout | Light Mode | Dark Mode |
 | :---: | :---: | :---: |
-| horizontal | ![](https://cdn.jsdelivr.net/gh/xiaoluoboding/image-hub-for-repo@latest/chrome-web-bookmark/horizontal-light.png) | ![](https://cdn.jsdelivr.net/gh/xiaoluoboding/image-hub-for-repo@latest/chrome-web-bookmark/horizontal-dark.png) |
-| vertical | ![](https://cdn.jsdelivr.net/gh/xiaoluoboding/image-hub-for-repo@latest/chrome-web-bookmark/vertical-light.png) | ![](https://cdn.jsdelivr.net/gh/xiaoluoboding/image-hub-for-repo@latest/chrome-web-bookmark/vertical-dark.png) |
+| horizontal | ![](./assets/chrome-web-bookmark_03.png) | ![](./assets/chrome-web-bookmark_04.png) |
+| vertical | ![](./assets/chrome-web-bookmark_02.png) | ![](./assets/chrome-web-bookmark_01.png) |
 
 ## Concepts
 
 This extension is built on top of [metafy](https://github.com/xiaoluoboding/metafy), which provides serverless api to fetch websites metadata easily and turn the metadata into the visual bookmark. like Twitter does.
+
+## Features
+
+* 🔮 Turn any tabs as a visual web bookmark
+* 🐦 Twitter card like
+* 🔖 Notion web-bookmark like
+* 🖼️ Copy image to your clipboard
+* 📷 Toggle the QRCode on the bookmark
+* 🌛 Dark mode support
 
 ## Usage
 
