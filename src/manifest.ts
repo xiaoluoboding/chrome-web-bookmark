@@ -21,20 +21,12 @@ export async function getManifest(): Promise<Manifest.WebExtensionManifest> {
     background: {
       service_worker: 'background.js',
     },
-    content_scripts: [
-      {
-        matches: ['http://*/*', 'https://*/*'],
-        js: ['./dist/content/index.global.js'],
-      },
-    ],
     icons: {
       16: './assets/favicon.png',
       48: './assets/favicon.png',
       128: './assets/favicon.png',
     },
     permissions: [
-      'tabs',
-      'storage',
       'activeTab',
     ],
     // this is required on dev for Vite script to load
