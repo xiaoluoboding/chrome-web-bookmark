@@ -1,21 +1,25 @@
-# Chrome Web Bookmark Extension
+# Chrome Extension - Web Visual Bookmark
 
-> Turn a link as a visual bookmark, just like `Twitter` cards or `Notion` web bookmark.
+> One-click turn any link into a visual bookmark, and it looks like `Twitter` cards or `Notion` web bookmark.
 
 ## Preview
 
 | Bookmark Layout | Light Mode | Dark Mode |
 | :---: | :---: | :---: |
-| horizontal | ![](./assets/chrome-web-bookmark_03.png) | ![](./assets/chrome-web-bookmark_04.png) |
-| vertical | ![](./assets/chrome-web-bookmark_02.png) | ![](./assets/chrome-web-bookmark_01.png) |
+| Twitter card like | ![](./assets/chrome-web-bookmark_03.png) | ![](./assets/chrome-web-bookmark_04.png) |
+| Notion web bookmark like | ![](./assets/chrome-web-bookmark_02.png) | ![](./assets/chrome-web-bookmark_01.png) |
 
 ## Concepts
 
 This extension is built on top of [metafy](https://github.com/xiaoluoboding/metafy), which provides serverless api to fetch websites metadata easily and turn the metadata into the visual bookmark. like Twitter does.
 
+## Articles
+
+* [《How to create a visual web bookmark?》](https://www.xlbd.me/posts/2021-08-16-how-to-create-a-visual-web-bookmark.html)
+
 ## Features
 
-* 🔮 Turn any tabs as a visual web bookmark
+* 🔮 Turn any tabs into a visual web bookmark
 * 🐦 Twitter card like
 * 🔖 Notion web-bookmark like
 * 🖼️ Copy image to your clipboard
