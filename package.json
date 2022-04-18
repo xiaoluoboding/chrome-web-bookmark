@@ -1,8 +1,8 @@
 {
   "name": "web-bookmark",
   "displayName": "Web Visual Bookmark",
-  "description": "Turn a link as a visualization bookmark, just like `Twitter` cards or `Notion` web bookmark.",
-  "version": "0.0.1",
+  "description": "One-click turn any link into a visual bookmark, and it looks like `Twitter` cards or `Notion` web bookmark.",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "run-p dev:*",
@@ -33,9 +33,9 @@
     "@types/fs-extra": "^9.0.12",
     "@types/node": "^16.4.1",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
-    "@vitejs/plugin-vue": "^1.2.5",
-    "@vue/compiler-sfc": "^3.1.5",
-    "@vueuse/core": "^5.1.4",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "@vue/compiler-sfc": "^3.2.33",
+    "@vueuse/core": "^8.2.6",
     "chokidar": "^3.5.2",
     "cross-env": "^7.0.3",
     "eslint": "^7.31.0",
@@ -47,14 +47,15 @@
     "sass": "^1.37.5",
     "tsup": "^4.12.5",
     "typescript": "^4.3.5",
-    "vite": "^2.4.3",
-    "vite-plugin-components": "^0.13.2",
-    "vite-plugin-icons": "^0.6.5",
-    "vite-plugin-windicss": "^1.2.5",
-    "vue": "^3.1.5",
+    "unplugin-icons": "^0.14.1",
+    "unplugin-vue-components": "^0.19.3",
+    "vite": "^2.9.5",
+    "vite-plugin-windicss": "^1.8.4",
+    "vue": "^3.2.33",
     "vue-demi": "^0.11.2",
     "vue-global-api": "^0.2.4",
     "webext-bridge": "^4.0.0",
-    "webextension-polyfill-ts": "^0.26.0"
+    "webextension-polyfill-ts": "^0.26.0",
+    "windicss": "^3.5.1"
   }
 }

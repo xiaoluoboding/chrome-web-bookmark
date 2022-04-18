@@ -51,7 +51,7 @@ onMounted(async() => {
     bodyColor: '#1af',
   })
   // eslint-disable-next-line no-console
-  console.log(baseQRCodeSVG.value)
+  // console.log(baseQRCodeSVG.value)
 })
 </script>
 

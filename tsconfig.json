@@ -19,7 +19,8 @@
     ],
     "paths": {
       "~/*": ["views/*"]
-    }
+    },
+    "jsx": "preserve"
   },
   "exclude": ["dist", "node_modules"]
 }
