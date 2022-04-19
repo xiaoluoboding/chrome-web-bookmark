@@ -12,7 +12,7 @@ export async function getManifest(): Promise<Manifest.WebExtensionManifest> {
     description: pkg.description,
     action: {
       default_icon: './assets/favicon.png',
-      default_popup: './dist/popup/index.html',
+      default_popup: './popup/index.html',
     },
     background: {
       service_worker: 'background.js',

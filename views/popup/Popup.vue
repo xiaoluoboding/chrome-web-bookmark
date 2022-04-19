@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <header class="absolute top-6 left-0 z-10 flex justify-center w-full">
-      <img src="https://bookmark.style/logo-full-dark.png" alt="logo" class="w-64" />
+      <img src="/assets/logo-full-dark.png" alt="logo" class="w-64" />
     </header>
     <main
       class="min-h-[36rem] grid place-content-center px-6 py-4 transform-gpu transition-all duration-200 ease-linear bg-gradient-to-br from-slate-700 via-sky-900 to-slate-900"
