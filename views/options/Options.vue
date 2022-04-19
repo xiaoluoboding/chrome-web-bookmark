@@ -18,19 +18,19 @@
           <figcaption class="text-left text-xl pb-4 text-gray-800 dark:text-gray-200">
             Notion Web Bookmark - Right Cover Image
           </figcaption>
-          <Bookmark v-if="sharedLink" :url="sharedLink" horizontal />
+          <VisualBookmark v-if="sharedLink" :url="sharedLink" horizontal />
         </section>
         <section>
           <figcaption class="text-left text-xl pb-4 text-gray-800 dark:text-gray-200">
             Notion Web Bookmark - Left Cover Image
           </figcaption>
-          <Bookmark v-if="sharedLink" :url="sharedLink" cover="left" horizontal />
+          <VisualBookmark v-if="sharedLink" :url="sharedLink" cover="left" horizontal />
         </section>
         <section>
           <figcaption class="text-left text-xl pb-4 text-gray-800 dark:text-gray-200">
             Notion Web Bookmark - Small Size
           </figcaption>
-          <Bookmark v-if="sharedLink" :url="sharedLink" size="small" horizontal />
+          <VisualBookmark v-if="sharedLink" :url="sharedLink" size="small" horizontal />
         </section>
       </div>
 
@@ -39,7 +39,7 @@
           <figcaption class="text-left text-xl pb-4 text-gray-800 dark:text-gray-200">
             Twitter Like Card
           </figcaption>
-          <Bookmark v-if="sharedLink" :url="sharedLink" />
+          <VisualBookmark v-if="sharedLink" :url="sharedLink" />
         </section>
       </div>
     </section>

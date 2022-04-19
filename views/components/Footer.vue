@@ -1,20 +1,20 @@
 <template>
-  <nav class="text-xl mt-6">
+  <nav class="text-xl space-x-1">
     <slot />
-    <button class="icon-btn mx-2 !outline-none" :title="$t('button.toggle_dark')" @click="e => toggleDark()">
+    <a class="btn-icon !outline-none" href="#" :title="$t('button.toggle_dark')" @click="e => toggleDark()">
       <carbon-moon v-if="isDark" />
       <carbon-sun v-else />
-    </button>
+    </a>
 
-    <a class="icon-btn mx-2" @click="openOptionsPage">
+    <a class="btn-icon" @click="openOptionsPage">
       <carbon-settings />
     </a>
 
-    <!-- <a class="icon-btn mx-2" :title="$t('button.toggle_langs')" @click="toggleLocales">
+    <!-- <a class="btn-icon mx-2" :title="$t('button.toggle_langs')" @click="toggleLocales">
       <carbon-language />
     </a> -->
 
-    <a class="icon-btn mx-2" rel="noreferrer" href="https://github.com/xiaoluoboding/chrome-web-bookmark" target="_blank" title="GitHub">
+    <a class="btn-icon" rel="noreferrer" href="https://github.com/xiaoluoboding/chrome-web-bookmark" target="_blank" title="GitHub">
       <carbon-logo-github />
     </a>
   </nav>

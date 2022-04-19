@@ -1,36 +1,43 @@
 <template>
   <main
-    class="p-4"
-    :class="{'column': isHorizontal}"
-    text="gray-700 dark:gray-200"
+    class="min-h-[36rem] grid place-content-center px-6 py-4 bg-gradient-to-br from-green-300 via-blue-500 to-purple-600 transform-gpu transition-all duration-200 ease-linear"
+    :class="[{'column': state.isHorizontal}, state.isHorizontal ? 'min-w-screen-md' : 'min-w-screen-sm']"
+    text="white"
   >
-    <Bookmark
-      v-if="currentUrl"
+    <div
       id="bookmark"
-      ref="bookmarkRef"
-      :url="currentUrl"
-      :horizontal="isHorizontal"
-      :qrcode="showQRCode"
-    />
+      class="overflow-hidden shadow-xl relative transform-gpu transition-all duration-200 ease-linear rounded-lg pointer-events-none"
+    >
+      <VisualBookmark
+        v-if="state.currentUrl"
+        ref="bookmarkRef"
+        :url="state.currentUrl"
+        :horizontal="state.isHorizontal"
+        :qrcode="state.showQRCode"
+      />
+    </div>
 
-    <Footer class="text-center">
-      <a class="icon-btn text-xl mx-2 inline-block" :title="$t('button.toggle_layout')" @click="toggleColumn">
-        <mdi-dock-right v-if="isHorizontal" />
+    <Footer class="fixed bottom-6 left-0 flex justify-center w-full">
+      <a class="btn-icon" :title="$t('button.toggle_layout')" @click="toggleColumn">
+        <mdi-dock-right v-if="state.isHorizontal" />
         <mdi-dock-top v-else />
       </a>
-      <a class="icon-btn text-xl mx-2 inline-block" :title="$t('button.show_qrcode')" @click="toggleQRCode">
-        <mdi:qrcode v-if="showQRCode" />
+      <a class="btn-icon" :title="$t('button.show_qrcode')" @click="toggleQRCode">
+        <mdi:qrcode v-if="state.showQRCode" />
         <mdi:qrcode-scan v-else />
       </a>
-      <a class="icon-btn text-xl mx-2 inline-block" :title="$t('button.copy_image')" @click="handleCopyImage">
-        <mdi:image-area />
+      <a v-if="!state.isCopying" class="btn-icon" :title="$t('button.copy_image')" @click="handleCopyImage">
+        <carbon:image-copy />
+      </a>
+      <a v-else class="btn-icon text-sm" :title="$t('button.close')">
+        <SpinIcon class="w-6 h-6" />
       </a>
     </Footer>
 
-    <template v-if="notifyList.length > 0">
+    <template v-if="state.notifyList.length > 0">
       <Notify
-        placement="CENTER"
-        :notify-list="notifyList"
+        placement="TOP"
+        :notify-list="state.notifyList"
         @close="removeNotify"
       />
     </template>
@@ -39,51 +46,65 @@
 
 <script lang="ts" setup>
 /* eslint-disable no-console */
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
-import domtoimage from 'dom-to-image'
 import {
   copyBlobToClipboard,
 } from 'copy-image-clipboard'
 
 import { sharedLink } from '~/logic/storage'
+import { useRetinaImage } from '~/composable/useRetinalImage'
 
 import Notify from '~/components/Notify.vue'
-import type { NotifyItem } from '~/components/types'
+import type { NotifyItem } from '~/types'
+
+type LocalState = {
+  notifyList: NotifyItem[]
+  currentUrl: string
+  isHorizontal: boolean
+  showQRCode: boolean
+  isCopying: boolean
+}
 
 const { t } = useI18n()
-const currentUrl = ref('')
-const isHorizontal = ref(false)
-const showQRCode = ref(true)
+
+const state = reactive<LocalState>({
+  currentUrl: '',
+  isHorizontal: false,
+  showQRCode: true,
+  notifyList: [],
+  isCopying: false,
+})
 const bookmarkRef = ref()
-const notifyList = ref<NotifyItem[]>([])
 
 const toggleColumn = () => {
-  isHorizontal.value = !isHorizontal.value
+  state.isHorizontal = !state.isHorizontal
 }
 const toggleQRCode = () => {
-  showQRCode.value = !showQRCode.value
+  state.showQRCode = !state.showQRCode
 }
 
 const removeNotify = (item: NotifyItem) => {
-  const index = notifyList.value.indexOf(item)
+  const index = state.notifyList.indexOf(item)
   if (index >= 0)
-    notifyList.value.splice(index, 1)
+    state.notifyList.splice(index, 1)
 }
 
 const handleCopyImage = async() => {
+  state.isCopying = true
+
   const bookmarkEl = document.getElementById('bookmark') as HTMLImageElement
   let timer: any = null
 
   try {
-    const blob = await domtoimage.toBlob(bookmarkEl)
+    const { imageBlob } = await useRetinaImage(bookmarkEl)
 
     const newNotify: NotifyItem = {
       style: 'SUCCESS',
       title: t('popup.notify_image_copied'),
     }
 
-    notifyList.value.push(newNotify)
+    state.notifyList.push(newNotify)
 
     if (timer)
       clearTimeout(timer)
@@ -94,10 +115,11 @@ const handleCopyImage = async() => {
       },
       3333,
     )
-
-    return copyBlobToClipboard(blob)
+    state.isCopying = false
+    return copyBlobToClipboard(imageBlob.value)
   }
   catch (error) {
+    state.isCopying = false
     console.log(error)
   }
 }
@@ -107,13 +129,7 @@ chrome.tabs.query({
   currentWindow: true,
 }, (tabs) => {
   const currentTab = tabs[0]
-  currentUrl.value = currentTab.url as string
-  sharedLink.value = currentUrl.value
+  state.currentUrl = currentTab.url as string
+  sharedLink.value = state.currentUrl
 })
 </script>
-
-<style scoped>
-#app {
-  height: 100%;
-}
-</style>

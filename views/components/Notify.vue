@@ -82,7 +82,7 @@
 
 <script lang="ts" setup>
 import { withDefaults, computed } from 'vue'
-import type { NotifyItem, NotifyPlacement } from './types'
+import type { NotifyItem, NotifyPlacement } from '~/types'
 
 // For <sm breakpoint, we always position it at the center.
 const placementClassMap: Map<NotifyPlacement, string> = new Map([
@@ -90,6 +90,7 @@ const placementClassMap: Map<NotifyPlacement, string> = new Map([
     'TOP_LEFT',
     'flex flex-col-reverse items-start justify-center sm:justify-end',
   ],
+  ['TOP', 'flex flex-col items-center justify-start'],
   [
     'TOP_RIGHT',
     'flex flex-col-reverse items-end justify-center sm:justify-end',
@@ -98,6 +99,7 @@ const placementClassMap: Map<NotifyPlacement, string> = new Map([
     'BOTTOM_LEFT',
     'flex flex-col space-y-2 items-start justify-center sm:justify-end',
   ],
+  ['BOTTOM', 'flex flex-col-reverse space-y-2 items-center justify-start'],
   [
     'BOTTOM_RIGHT',
     'flex flex-col space-y-2 items-end justify-center sm:justify-end',

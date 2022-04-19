@@ -5,6 +5,7 @@ import i18n from '~/plugins/i18n'
 import '../styles'
 
 const app = createApp(App)
-app
-  .use(i18n)
-  .mount('#app')
+
+app.use(i18n)
+
+app.mount('#app')
