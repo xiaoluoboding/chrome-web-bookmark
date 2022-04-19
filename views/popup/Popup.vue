@@ -23,8 +23,8 @@
         <mdi-dock-top v-else />
       </a>
       <a class="btn-icon" :title="$t('button.show_qrcode')" @click="toggleQRCode">
-        <mdi:qrcode v-if="state.showQRCode" />
-        <mdi:qrcode-scan v-else />
+        <mdi:qrcode-plus v-if="state.showQRCode" />
+        <mdi:qrcode-remove v-else />
       </a>
       <a v-if="!state.isCopying" class="btn-icon" :title="$t('button.copy_image')" @click="handleCopyImage">
         <carbon:image-copy />
