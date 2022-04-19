@@ -1,46 +1,51 @@
 <template>
-  <main
-    class="min-h-[36rem] grid place-content-center px-6 py-4 transform-gpu transition-all duration-200 ease-linear"
-    :class="[{'column': state.isHorizontal}, state.isHorizontal ? 'min-w-screen-md' : 'min-w-screen-sm', state.gradientColor]"
-  >
-    <div
-      id="bookmark"
-      class="overflow-hidden bg-black shadow-xl relative transform-gpu transition-all duration-200 ease-linear rounded-lg pointer-events-none"
-      :class="state.gradientColor"
+  <div class="relative">
+    <header class="absolute top-6 left-0 z-10 flex justify-center w-full">
+      <img src="/assets/logo-full-dark.png" alt="logo" class="w-64" />
+    </header>
+    <main
+      class="min-h-[36rem] grid place-content-center px-6 py-4 transform-gpu transition-all duration-200 ease-linear bg-gradient-to-br from-slate-700 via-sky-900 to-slate-900"
+      :class="[{'column': state.isHorizontal}, state.isHorizontal ? 'min-w-screen-md' : 'min-w-screen-sm']"
     >
-      <VisualBookmark
-        v-if="state.currentUrl"
-        :url="state.currentUrl"
-        :horizontal="state.isHorizontal"
-        :qrcode="state.showQRCode"
-      />
-    </div>
+      <div
+        id="bookmark"
+        class="overflow-hidden bg-black shadow-xl relative transform-gpu transition-all duration-200 ease-linear rounded-lg pointer-events-none"
+        :class="state.gradientColor"
+      >
+        <VisualBookmark
+          v-if="state.currentUrl"
+          :url="state.currentUrl"
+          :horizontal="state.isHorizontal"
+          :qrcode="state.showQRCode"
+        />
+      </div>
 
-    <Footer class="fixed bottom-6 left-0 flex justify-center w-full">
-      <a class="btn-icon" :title="$t('button.toggle_layout')" @click="toggleColumn">
-        <mdi-dock-right v-if="state.isHorizontal" />
-        <mdi-dock-top v-else />
-      </a>
-      <a class="btn-icon" :title="$t('button.show_qrcode')" @click="toggleQRCode">
-        <mdi:qrcode-plus v-if="state.showQRCode" />
-        <mdi:qrcode-remove v-else />
-      </a>
-      <a v-if="!state.isCopying" class="btn-icon" :title="$t('button.copy_image')" @click="handleCopyImage">
-        <carbon:image-copy />
-      </a>
-      <a v-else class="btn-icon text-sm" :title="$t('button.close')">
-        <SpinIcon class="w-6 h-6" />
-      </a>
-    </Footer>
+      <SiteFooter class="fixed bottom-6 left-0 flex justify-center w-full">
+        <a class="btn-icon" :title="$t('button.toggle_layout')" @click="toggleColumn">
+          <mdi-dock-right v-if="state.isHorizontal" />
+          <mdi-dock-top v-else />
+        </a>
+        <a class="btn-icon" :title="$t('button.show_qrcode')" @click="toggleQRCode">
+          <mdi:qrcode-plus v-if="state.showQRCode" />
+          <mdi:qrcode-remove v-else />
+        </a>
+        <a v-if="!state.isCopying" class="btn-icon" :title="$t('button.copy_image')" @click="handleCopyImage">
+          <carbon:image-copy />
+        </a>
+        <a v-else class="btn-icon text-sm" :title="$t('button.close')">
+          <SpinIcon class="w-6 h-6" />
+        </a>
+      </SiteFooter>
 
-    <template v-if="state.notifyList.length > 0">
-      <Notify
-        placement="TOP"
-        :notify-list="state.notifyList"
-        @close="removeNotify"
-      />
-    </template>
-  </main>
+      <template v-if="state.notifyList.length > 0">
+        <Notify
+          placement="CENTER"
+          :notify-list="state.notifyList"
+          @close="removeNotify"
+        />
+      </template>
+    </main>
+  </div>
 </template>
 
 <script lang="ts" setup>
