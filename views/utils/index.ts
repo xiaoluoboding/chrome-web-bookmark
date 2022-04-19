@@ -17,3 +17,5 @@ export const getBase64Image = (url: string): Promise<string> => {
     }
   })
 }
+
+export const sample = (arr: any[]) => arr[Math.floor(Math.random() * arr.length)]

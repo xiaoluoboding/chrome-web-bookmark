@@ -1,16 +1,15 @@
 <template>
   <main
-    class="min-h-[36rem] grid place-content-center px-6 py-4 bg-gradient-to-br from-green-300 via-blue-500 to-purple-600 transform-gpu transition-all duration-200 ease-linear"
-    :class="[{'column': state.isHorizontal}, state.isHorizontal ? 'min-w-screen-md' : 'min-w-screen-sm']"
-    text="white"
+    class="min-h-[36rem] grid place-content-center px-6 py-4 transform-gpu transition-all duration-200 ease-linear"
+    :class="[{'column': state.isHorizontal}, state.isHorizontal ? 'min-w-screen-md' : 'min-w-screen-sm', state.gradientColor]"
   >
     <div
       id="bookmark"
-      class="overflow-hidden shadow-xl relative transform-gpu transition-all duration-200 ease-linear rounded-lg pointer-events-none"
+      class="overflow-hidden bg-black shadow-xl relative transform-gpu transition-all duration-200 ease-linear rounded-lg pointer-events-none"
+      :class="state.gradientColor"
     >
       <VisualBookmark
         v-if="state.currentUrl"
-        ref="bookmarkRef"
         :url="state.currentUrl"
         :horizontal="state.isHorizontal"
         :qrcode="state.showQRCode"
@@ -46,7 +45,7 @@
 
 <script lang="ts" setup>
 /* eslint-disable no-console */
-import { ref, reactive } from 'vue'
+import { reactive, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import {
   copyBlobToClipboard,
@@ -57,6 +56,7 @@ import { useRetinaImage } from '~/composable/useRetinalImage'
 
 import Notify from '~/components/Notify.vue'
 import type { NotifyItem } from '~/types'
+import { sample } from '~/utils'
 
 type LocalState = {
   notifyList: NotifyItem[]
@@ -64,6 +64,7 @@ type LocalState = {
   isHorizontal: boolean
   showQRCode: boolean
   isCopying: boolean
+  gradientColor: string
 }
 
 const { t } = useI18n()
@@ -74,8 +75,64 @@ const state = reactive<LocalState>({
   showQRCode: true,
   notifyList: [],
   isCopying: false,
+  gradientColor: '',
 })
-const bookmarkRef = ref()
+
+const getGradientColor = () => {
+  const ANGLE_LIST = ['tl', 'tr', 'bl', 'br']
+  const angle = sample(ANGLE_LIST)
+
+  return sample([
+    {
+      name: 'OCEANIC',
+      class: `bg-gradient-to-${angle} from-green-300 via-blue-500 to-purple-600`,
+    },
+    {
+      name: 'HYPER',
+      class: `bg-gradient-to-${angle} from-pink-500 via-red-500 to-yellow-500`,
+    },
+    {
+      name: 'COTTON CANDY',
+      class: `bg-gradient-to-${angle} from-pink-300 via-purple-300 to-indigo-400`,
+    },
+    {
+      name: 'SUNSET',
+      class: `bg-gradient-to-${angle} from-indigo-200 via-red-200 to-yellow-100`,
+    },
+    {
+      name: 'PEACHY',
+      class: `bg-gradient-to-${angle} from-red-200 via-red-300 to-yellow-200`,
+    },
+    {
+      name: 'POWERPUFF',
+      class: `bg-gradient-to-${angle} from-sky-400 via-rose-400 to-lime-400`,
+    },
+    {
+      name: 'GOTHAM',
+      class: `bg-gradient-to-${angle} from-gray-700 via-gray-900 to-black`,
+    },
+    {
+      name: 'SPACE',
+      class: `bg-gradient-to-${angle} from-gray-900 to-gray-600`,
+    },
+    {
+      name: 'GUNMETAL',
+      class: `bg-gradient-to-${angle} from-gray-200 via-gray-400 to-gray-600`,
+    },
+    {
+      name: 'MIDNIGHT',
+      class: `bg-gradient-to-${angle} from-blue-700 via-blue-800 to-gray-900`,
+    },
+    {
+      name: 'MESSENGER',
+      class: `bg-gradient-to-${angle} from-sky-400 to-blue-500`,
+    },
+    {
+      name: 'SEA',
+      class: `bg-gradient-to-${angle} from-teal-200 to-lime-200`,
+    },
+  ])
+}
 
 const toggleColumn = () => {
   state.isHorizontal = !state.isHorizontal
@@ -131,5 +188,10 @@ chrome.tabs.query({
   const currentTab = tabs[0]
   state.currentUrl = currentTab.url as string
   sharedLink.value = state.currentUrl
+})
+
+onMounted(() => {
+  const gradientColor = getGradientColor()
+  state.gradientColor = gradientColor.class
 })
 </script>
