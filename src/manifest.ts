@@ -1,6 +1,6 @@
 import type { Manifest } from 'webextension-polyfill-ts'
 import pkg from '../package.json'
-import { isDev, port } from '../scripts/utils'
+import { IS_DEV, PORT } from '../scripts/utils'
 
 export async function getManifest(): Promise<Manifest.WebExtensionManifest> {
   // update this file to update this manifest.json
@@ -27,8 +27,8 @@ export async function getManifest(): Promise<Manifest.WebExtensionManifest> {
     ],
     // this is required on dev for Vite script to load
     content_security_policy: {
-      extension_pages: isDev
-        ? `script-src \'self\' http://localhost:${port}; object-src \'self\'`
+      extension_pages: IS_DEV
+        ? `script-src \'self\' http://localhost:${PORT}; object-src \'self\'`
         : undefined,
     },
   }

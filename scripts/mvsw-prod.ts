@@ -4,12 +4,16 @@ import { logger } from './utils'
 
 ;(async() => {
   try {
+    // copy icon files
+    await fs.copy(resolve('public'), resolve('extension/prod/assets'), {
+      overwrite: true,
+    })
     await fs.move(
-      resolve('extension/dist/index.global.js'),
-      resolve('extension/background.js'),
+      resolve('extension/prod/dist/index.global.js'),
+      resolve('extension/prod/background.js'),
       { overwrite: true },
     )
-    await fs.remove(resolve('extension/dist'))
+    await fs.remove(resolve('extension/prod/dist'))
     // eslint-disable-next-line no-console
     logger('BUILD:SW', 'Moved service-worker success!')
   }
