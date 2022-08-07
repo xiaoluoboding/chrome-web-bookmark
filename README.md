@@ -4,9 +4,9 @@
 
 ## Preview
 
-| Bookmark Layout | Light Mode | Dark Mode |
-| :---: | :---: | :---: |
-| Twitter card like | ![](./assets/chrome-web-bookmark_03.png) | ![](./assets/chrome-web-bookmark_04.png) |
+|     Bookmark Layout      |                Light Mode                |                Dark Mode                 |
+| :----------------------: | :--------------------------------------: | :--------------------------------------: |
+|    Twitter card like     | ![](./assets/chrome-web-bookmark_03.png) | ![](./assets/chrome-web-bookmark_04.png) |
 | Notion web bookmark like | ![](./assets/chrome-web-bookmark_02.png) | ![](./assets/chrome-web-bookmark_01.png) |
 
 ## Concepts
@@ -15,16 +15,16 @@ This extension is built on top of [metafy](https://github.com/xiaoluoboding/meta
 
 ## Articles
 
-* [《How to create a visual web bookmark?》](https://www.xlbd.me/posts/2021-08-16-how-to-create-a-visual-web-bookmark.html)
+- [《How to create a visual web bookmark?》](https://xlbd.me/posts/how-to-create-a-visual-web-bookmark)
 
 ## Features
 
-* 🔮 Turn any tabs into a visual web bookmark
-* 🐦 Twitter card like
-* 🔖 Notion web-bookmark like
-* 🖼️ Copy image to your clipboard
-* 📷 Toggle the QRCode on the bookmark
-* 🌛 Dark mode support
+- 🔮 Turn any tabs into a visual web bookmark
+- 🐦 Twitter card like
+- 🔖 Notion web-bookmark like
+- 🖼️ Copy image to your clipboard
+- 📷 Toggle the QRCode on the bookmark
+- 🌛 Dark mode support
 
 ## Usage
 
