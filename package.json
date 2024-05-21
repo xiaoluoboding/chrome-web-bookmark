@@ -1,8 +1,8 @@
 {
-  "name": "web-bookmark",
-  "displayName": "Web Visual Bookmark",
+  "name": "web-visual-bookmark",
+  "displayName": "Bookmark Style - Style your visual bookmark",
   "description": "One-click turn any link into a visual bookmark, and it looks like `Twitter` cards or `Notion` web bookmark.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "rimraf extension/dev && run-p dev:*",
